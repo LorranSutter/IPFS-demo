@@ -1,13 +1,13 @@
 import React from 'react';
 import { Layout, Card } from '@shopify/polaris';
 
-const UploadDoc = () => {
+const Download = () => {
     return (
         <Layout.Section>
-            <Card sectioned title="Dowload Doc">
+            <Card sectioned title="Download file">
             </Card>
         </Layout.Section>
     );
 }
 
-export default UploadDoc;
+export default Download;

@@ -2,15 +2,15 @@ import React from 'react';
 
 import { Page, Layout } from '@shopify/polaris';
 
-import UploadDoc from './components/UploadDoc';
-import DownloadDoc from './components/DownloadDoc';
+import Upload from './components/Upload';
+import Download from './components/Download';
 
 function App() {
   return (
     <Page title="IPFS Demo">
       <Layout>
-        <UploadDoc />
-        <DownloadDoc />
+        <Upload />
+        <Download />
       </Layout>
     </Page>
   );

@@ -1,5 +1,5 @@
 .dropzone {
-	height: 300px;
+	height: 250px;
 	background: #B3BCF5;
 	border-radius: 10px;
 
@@ -10,7 +10,8 @@
 }
 
 .dropzone:hover {
-    background: #F4F5FA;
+	background: #F4F5FA;
+	cursor: pointer;
 }
 
 .dropzone img {
@@ -19,7 +20,7 @@
 	object-fit: cover;
 }
 
-.dropzone p {
+.dropzone div {
 	width: calc(100% - 60px);
 	height: calc(100% - 60px);
 	border-radius: 10px;
@@ -32,7 +33,11 @@
 	color: #333;
 }
 
-.dropzone p svg {
+.dropzone div * {
+	margin: 4px 0;
+}
+
+.dropzone div svg {
 	color: #5C6AC4;
 	width: 48px;
 	height: 48px;

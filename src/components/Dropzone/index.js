@@ -1,9 +1,11 @@
 import React, { useCallback, useState } from 'react';
+import { Spinner, DisplayText } from '@shopify/polaris';
 import { useDropzone } from 'react-dropzone';
 import { FiUpload, FiImage, FiFileText, FiHeadphones, FiVideo, FiFile } from 'react-icons/fi';
 
 import detect from 'detect-file-type';
 
+import ipfs from '../../ipfs';
 import './styles.css';
 
 function detectMime(mime) {
@@ -24,30 +26,34 @@ function detectMime(mime) {
 
 const Dropzone = ({ onFileUploaded }) => {
 
+    const [isLoading, setIsLoading] = useState(false);
     const [selectedFileName, setSelectedFileName] = useState('');
     const [selectedFileIcon, setSelectedFileIcon] = useState();
 
     const onDrop = useCallback(acceptedFiles => {
+        setIsLoading(isLoading => !isLoading);
         const file = acceptedFiles[0];
-        const reader = new FileReader()
+        const reader = new FileReader();
 
         reader.readAsArrayBuffer(file)
         reader.onload = () => {
-            console.log({ buffer: Buffer(reader.result) })
-            detect
-                .fromBuffer(Buffer(reader.result),
-                    (err, res) => {
-                        if (err) {
-                            console.log(err);
-                        }
-                        setSelectedFileName(file.name);
-                        setSelectedFileIcon(detectMime(res.mime));
-                    })
+            const fileBuffer = Buffer(reader.result);
+
+            detect.fromBuffer(fileBuffer,
+                async (err, res) => {
+                    if (err) {
+                        console.log(err);
+                    }
+
+                    for await (const fileIPFS of ipfs.add(fileBuffer)) {
+                        onFileUploaded(fileIPFS.path);
+                    }
+
+                    setSelectedFileName(file.name);
+                    setSelectedFileIcon(detectMime(res.mime));
+                    setIsLoading(isLoading => !isLoading);
+                });
         }
-
-        // const fileUrl = URL.createObjectURL(file);
-
-        onFileUploaded(file);
     }, [onFileUploaded]);
 
     const { getRootProps, getInputProps } = useDropzone({
@@ -58,16 +64,16 @@ const Dropzone = ({ onFileUploaded }) => {
         <div className='dropzone' {...getRootProps()}>
             <input {...getInputProps()} />
             {!selectedFileIcon ?
-                <p>
+                <div>
                     <FiUpload />
-                    Drag 'n' drop a file here, or click to select a file
-                </p>
+                    <DisplayText size="small">Drag 'n' drop a file here, or click to select a file</DisplayText>
+                </div>
                 :
-                <p>
-                    {selectedFileIcon}
-                    <strong>File {selectedFileName} selected</strong>
-                    Drag 'n' drop here or click to select another file
-                </p>
+                <div>
+                    {isLoading ? <Spinner size="large" color="inkLightest" /> : selectedFileIcon}
+                    <strong>File {selectedFileName} added</strong>
+                    <DisplayText size="small">Drag 'n' drop here or click to select another file</DisplayText>
+                </div>
             }
         </div>
     )
