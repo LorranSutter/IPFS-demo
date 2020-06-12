@@ -2,7 +2,7 @@
 
 Simple demo of IPFS
 
-## :Book: Resources and technology :computer:
+## :book: Resources and technology :computer:
 
 - [IPFS](https://ipfs.io/)
 - [IPFS http client](https://www.npmjs.com/package/ipfs-http-client)
@@ -11,3 +11,17 @@ Simple demo of IPFS
 - [React icons](https://www.npmjs.com/package/react-icons)
 - [React dropzone](https://react-dropzone.js.org/)
 - [Detect file type](https://www.npmjs.com/package/detect-file-type)
+
+
+<!-- "API": {
+		"HTTPHeaders": {
+			"Access-Control-Allow-Methods": [
+				"GET",
+				"POST",
+				"PUT"
+			],
+			"Access-Control-Allow-Origin": [
+				"*"
+			]
+		}
+	}, -->
