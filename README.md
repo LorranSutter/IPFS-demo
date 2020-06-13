@@ -1,27 +1,60 @@
-# IPFS-demo
+# IPFS Demo
 
-Simple demo of IPFS
+Demo of IPFS usage using ReactJS and IPFS HTTP client presented as lab assingment for BCDV1011 - Design Patterns for Blockchain from <a href='https://www.georgebrown.ca/programs/blockchain-development-program-t175/'>Blockchain Development</a> program from <a href='https://www.georgebrown.ca'>George Brown College</a>.
 
-## :book: Resources and technology :computer:
+<p align="center">
 
-- [IPFS](https://ipfs.io/)
-- [IPFS http client](https://www.npmjs.com/package/ipfs-http-client)
-- [React](https://reactjs.org/)
-- [Polaris](https://polaris.shopify.com/)
-- [React icons](https://www.npmjs.com/package/react-icons)
-- [React dropzone](https://react-dropzone.js.org/)
-- [Detect file type](https://www.npmjs.com/package/detect-file-type)
+<img src="https://res.cloudinary.com/lorransutter/image/upload/v1592062309/IPFS_Demo.gif" max-height="400">
 
+</p>
 
-<!-- "API": {
-		"HTTPHeaders": {
-			"Access-Control-Allow-Methods": [
-				"GET",
-				"POST",
-				"PUT"
-			],
-			"Access-Control-Allow-Origin": [
-				"*"
-			]
+## :runner: How to run
+
+Open your terminal in the folder you want to clone the project
+
+```sh
+# Clone this repo
+git clone https://github.com/LorranSutter/IPFS-demo.git
+
+# Go to the project folder
+cd IPFS-demo
+
+# Install dependencies
+yarn
+```
+
+Now you will need two opened terminals to run the project. One for IPFS and another one for the frontend.
+
+IPFS will run on http://127.0.0.1:5001/
+
+Frontend will run on http://localhost:3000/
+
+In this project I have employed go-ipfs. You may download and install [here](https://dist.ipfs.io/#go-ipfs). In windows you just have to click on the executable file to run IPFS. In both Linux and Mac you may follow command line of [these steps](https://docs.ipfs.io/how-to/command-line-quick-start/#install-ipfs).
+
+If you are running IPFS locally there is a great chance of having problems due to cross-origin requests, because there will be requests from localhost:3000 to 127.0.0.1:5001. To fix that you may access [IPFS web UI](http://127.0.0.1:5001/webui) and change JSON configuration file adding the following code in API key:
+
+```json
+"API": {
+	"HTTPHeaders": {
+		"Access-Control-Allow-Methods": ["GET","POST","PUT"],
+		"Access-Control-Allow-Origin": ["*"]
 		}
-	}, -->
+	}
+```
+
+```sh
+## In the another terminal ##
+
+# Run the project
+yarn start
+```
+
+## :book: Resources and technologies :computer:
+
+- [IPFS](https://ipfs.io/) - InterPlanetary File System
+- [IPFS http client](https://www.npmjs.com/package/ipfs-http-client) - IPFS for client side
+- [ReactJS](https://reactjs.org/) - frontend library
+- [Polaris](https://polaris.shopify.com/) - design system
+- [React icons](https://www.npmjs.com/package/react-icons) - icons library provider
+- [React dropzone](https://react-dropzone.js.org/) - create zone to drop files
+- [Detect file type](https://www.npmjs.com/package/detect-file-type) - file type detection
