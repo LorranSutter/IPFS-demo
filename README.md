@@ -4,7 +4,7 @@ Demo of IPFS usage using ReactJS and IPFS HTTP client presented as lab assingmen
 
 <p align="center">
 
-<img src="https://res.cloudinary.com/lorransutter/image/upload/v1592062309/IPFS_Demo.gif" max-height="400">
+<img src="https://res.cloudinary.com/lorransutter/image/upload/v1592162287/IPFS_Demo.gif" max-height="400">
 
 </p>
 
